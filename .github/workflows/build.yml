@@ -8,6 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q "$(ls *.zip | head -n 1)"
+      - name: Corrigir seletor de widgets
+        run: |
+          sed -i 's|p\.providerInfo\.applicationInfo|packageManager.getApplicationInfo(p.provider.packageName, 0)|' NexusLauncher/app/src/main/java/com/nexus/launcher/ui/home/HomeActivity.kt
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
